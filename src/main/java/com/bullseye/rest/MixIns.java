@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 public class MixIns {
 	
-	@JsonPropertyOrder({"idAlmacen", "tipo_producto", "id", "marca", "modelo", "calificacionEnergetica","numeroPulgadas", "capacidadCarga", "precio" })
-	public static interface ArmaConDeposito {
+	@JsonPropertyOrder({"idDeposito", "nombre" , "calibreEnMilimetros" })
+	public static interface ArmaConId {
+		
+		
 		
 	}
 

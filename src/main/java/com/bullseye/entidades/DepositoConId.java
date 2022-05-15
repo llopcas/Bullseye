@@ -1,43 +1,48 @@
 package com.bullseye.entidades;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import com.bullseye.repositorios.ArmaConDeposito;
-
-import es.electromarket.Almacen;
+import es.bullseye.Deposito;
 
 @Entity
-@Table(name = "DEPOSITOS")
-public class DepositoConId extends Deposito{
-	
-	
-	@OneToMany(cascade = CascadeType.ALL, targetEntity = ArmaConDeposito.class, mappedBy = "deposito")
-	private Collection<ArmaConDeposito> armas;
+public class DepositoConId extends Deposito {
 
-	public Collection<ArmaConDeposito> getArmas() {
+	private Collection<ArmaConId> armas = new ArrayList<>();
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = ArmaConId.class, mappedBy = "depositos")
+	public Collection<ArmaConId> getArmas() {
 		return armas;
 	}
 
-	public void setArmas(Collection<ArmaConDeposito> armas) {
-		this.armas = armas;
-	}
-	
-	public DepositoConId() {}
-	
-	public DepositoConId(Collection<ArmaConDeposito> armas) {
-		super();
-		this.armas=armas;
-	}
-	
-	public void addArmaConDeposito(ArmaConDeposito armaConDeposito) {
-		getArmas().add(armaConDeposito);
-		armaConDeposito.setAlmacen(this);
+	public void addArmaConId(ArmaConId arma) {
+		getArmas().add(arma);
+		arma.setDeposito(this);
 	}
 
+	public DepositoConId() {
 
+	}
+
+	public DepositoConId(int codigoDeposito) {
+		super(codigoDeposito);
+	}
 }

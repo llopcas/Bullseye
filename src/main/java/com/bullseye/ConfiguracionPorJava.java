@@ -5,7 +5,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-import com.bullseye.repositorios.ArmaConDeposito;
+import com.bullseye.entidades.ArmaConId;
+
 import com.bullseye.rest.MixIns;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -22,7 +23,7 @@ public class ConfiguracionPorJava {
 
 		ObjectMapper mapper = new ObjectMapper();
 		// Los MixIn se pueden usar y reutilizar sobre codigo que no controlo, incluido sobre las interfaces
-		mapper.addMixIn(ArmaConDeposito.class, MixIns.ArmaConDeposito.class);
+		mapper.addMixIn(ArmaConId.class, MixIns.ArmaConId.class);
 		return mapper;
 	}
 	

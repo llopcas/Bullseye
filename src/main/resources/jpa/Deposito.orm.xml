@@ -10,6 +10,9 @@
 			<id name="idDeposito">
         		<generated-value strategy="IDENTITY"/>
         	</id>
+        	<basic name="codigoDeposito" optional="false" >
+				<column name="CODIGO" length="32 "/>
+            </basic>
         </attributes>
     </mapped-superclass>
 </entity-mappings>
